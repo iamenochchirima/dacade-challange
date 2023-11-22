@@ -38,5 +38,14 @@ export default Canister({
     readUser: query([text], User, (userId) => {
         return users.get(userId);
     }),
+
+    updateUser: update([User], User, (user) => {
+        users.put(user.id, user);
+        return user;
+    }),
+
+    deleteUser: update([text], Void, (userId) => {
+        users.delete(userId);
+    }),
 });
 
